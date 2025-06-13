@@ -1,0 +1,24 @@
+<h2>Track your shipment</h2>
+
+<form method="get">
+    <input type="text" name="barcode" value="{$smarty.get.barcode|escape}" placeholder="Enter tracking number" required />
+    <button type="submit">Track</button>
+</form>
+
+{if $error}
+    <p style="color:red;">{$error}</p>
+{/if}
+
+{if $statuses}
+    <table border="1" cellpadding="6">
+        <tr><th>Date</th><th>Event</th><th>Office</th><th>Country</th></tr>
+        {foreach $statuses as $s}
+            <tr>
+                <td>{$s.date|date_format:"%Y-%m-%d %H:%M"}</td>
+                <td>{$s.eventName}</td>
+                <td>{$s.index}</td>
+                <td>{$s.country}</td>
+            </tr>
+        {/foreach}
+    </table>
+{/if}
